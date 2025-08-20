@@ -14,14 +14,14 @@ class InvoicesTable
     {
         return $table
             ->columns([
-                TextColumn::make('client')
+                TextColumn::make('invoicedate')
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('client.client')
                     ->searchable(),
-                TextColumn::make('contact_firstname')
-                    ->searchable(),
-                TextColumn::make('contact_surname')
-                    ->searchable(),
-                TextColumn::make('contact_email')
-                    ->searchable(),
+                TextColumn::make('total')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //

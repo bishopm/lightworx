@@ -2,6 +2,9 @@
 
 namespace Bishopm\Lightworx\Filament\Resources\Invoices\Schemas;
 
+use Bishopm\Lightworx\Models\Client;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,15 +14,16 @@ class InvoiceForm
     {
         return $schema
             ->components([
-                TextInput::make('client')
+                DatePicker::make('invoicedate')
+                    ->default(now())
                     ->required(),
-                TextInput::make('contact_firstname')
+                Select::make('client_id')
+                    ->relationship('client', 'id')
+                    ->options(Client::query()->pluck('client', 'id'))
                     ->required(),
-                TextInput::make('contact_surname')
-                    ->required(),
-                TextInput::make('contact_email')
-                    ->email()
-                    ->required(),
+                TextInput::make('total')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 }

@@ -4,16 +4,27 @@ namespace Bishopm\Lightworx\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invoice extends Model
 {
     
-    public $table = 'clients';
+    public $table = 'invoices';
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
 
+    public function hours(): HasMany
+    {
+        return $this->hasMany(Hour::class);
+    }
+
+    public function disbursements(): HasMany
+    {
+        return $this->hasMany(Disbursement::class);
+    }
 }

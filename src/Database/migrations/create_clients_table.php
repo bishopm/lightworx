@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('contact_firstname');
             $table->string('contact_surname');
             $table->string('contact_email');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
     

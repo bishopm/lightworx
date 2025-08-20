@@ -7,7 +7,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('invoicedisbursements', function($table)
+        Schema::create('disbursements', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
@@ -19,6 +19,6 @@ return new class extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('invoicedisbursements');
+        Schema::dropIfExists('disbursements');
     }
 };
