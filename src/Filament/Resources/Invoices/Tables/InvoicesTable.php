@@ -14,13 +14,17 @@ class InvoicesTable
     {
         return $table
             ->columns([
-                TextColumn::make('invoicedate')
-                    ->date()
-                    ->sortable(),
+                TextColumn::make('id')->label('No.'),
                 TextColumn::make('client.client')
                     ->searchable(),
                 TextColumn::make('total')
                     ->numeric()
+                    ->sortable(),
+                TextColumn::make('created_at')->label('Created')
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('invoicedate')->label('Sent on')
+                    ->date()
                     ->sortable(),
             ])
             ->filters([

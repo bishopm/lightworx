@@ -11,6 +11,7 @@ return new class extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
+            $table->date('hourdate');
             $table->integer('invoice_id');
             $table->string('details');
             $table->decimal('hours', 5,2)->nullable();

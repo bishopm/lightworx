@@ -17,21 +17,20 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
-class HoursRelationManager extends RelationManager
+class DisbursementsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'hours';
+    protected static string $relationship = 'disbursements';
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                DatePicker::make('hourdate')->label('Date')
+                DatePicker::make('disbursementdate')->label('Date')
                     ->default(now())
                     ->required(),
                 TextInput::make('details')
                     ->required(),
-                TextInput::make('hours')
-                    ->default(1)
+                TextInput::make('disbursement')
                     ->required()
                     ->numeric(),
             ]);
@@ -42,12 +41,12 @@ class HoursRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('details')
             ->columns([
-                TextColumn::make('hourdate')->label('Date')
+                TextColumn::make('disbursementdate')->label('Date')
                     ->date()
                     ->sortable(),
                 TextColumn::make('details')
                     ->searchable(),
-                TextColumn::make('hours')
+                TextColumn::make('disbursement')
                     ->numeric()
                     ->sortable(),
             ])

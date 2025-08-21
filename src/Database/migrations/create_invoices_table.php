@@ -13,7 +13,10 @@ return new class extends Migration
             $table->increments('id')->unsigned();
             $table->date('invoicedate');
             $table->integer('client_id');
+            $table->decimal('rate', 8,2);
             $table->decimal('total', 8,2);
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
     

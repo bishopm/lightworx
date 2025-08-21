@@ -10,6 +10,7 @@ class Hour extends Model
     
     public $table = 'hours';
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     public function invoice(): BelongsTo
     {

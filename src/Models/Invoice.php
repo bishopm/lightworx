@@ -11,7 +11,6 @@ class Invoice extends Model
     
     public $table = 'invoices';
     protected $guarded = ['id'];
-    public $timestamps = false;
 
     public function client(): BelongsTo
     {

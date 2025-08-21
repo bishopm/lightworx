@@ -2,6 +2,7 @@
 
 namespace Bishopm\Lightworx\Filament\Resources\Settings\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,7 +14,10 @@ class SettingForm
             ->components([
                 TextInput::make('setting')
                     ->required(),
-                TextInput::make('category')
+                Select::make('category')
+                    ->options(['general'=>'General'])
+                    ->default('general')
+                    ->selectablePlaceholder(false)
                     ->required(),
                 TextInput::make('value')
                     ->required(),

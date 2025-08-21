@@ -10,6 +10,7 @@ class Disbursement extends Model
     
     public $table = 'disbursements';
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     public function invoice(): BelongsTo
     {

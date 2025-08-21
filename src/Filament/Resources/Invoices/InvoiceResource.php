@@ -35,7 +35,8 @@ class InvoiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            'Bishopm\Lightworx\Filament\Resources\Invoices\RelationManagers\HoursRelationManager'
+            'Bishopm\Lightworx\Filament\Resources\Invoices\RelationManagers\HoursRelationManager',
+            'Bishopm\Lightworx\Filament\Resources\Invoices\RelationManagers\DisbursementsRelationManager'
         ];
     }
 
