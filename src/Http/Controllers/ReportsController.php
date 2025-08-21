@@ -36,11 +36,13 @@ class ReportsController extends Controller
         $this->pdf->SetFont('DejaVu', 'B', 12);
         $this->pdf->Image($this->logo,168,8,45);
         $this->pdf->text(15, 10, "Invoice");
+        $this->pdf->SetTextColor(100,100,100);
         $this->pdf->text(15, 25, "Lightworx");
         $this->pdf->SetFont('DejaVu', '', 10);
         $this->pdf->text(15, 30, "Open source systems and solutions");
         $this->pdf->text(15, 34, "www.lightworx.co.za");
         $this->pdf->text(15, 38, setting('email_address'));
+        $this->pdf->SetTextColor(0,0,0);
         $filename=$this->title;
         $this->pdf->SetFont('DejaVu', 'B', 10);
         $this->pdf->text(15,70,$inv->client->client);

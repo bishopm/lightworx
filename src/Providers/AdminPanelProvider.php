@@ -2,6 +2,7 @@
 
 namespace Bishopm\Lightworx\Providers;
 
+use Bishopm\Lightworx\Filament\Widgets\Invoices;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -38,6 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: base_path('vendor/bishopm/lightworx/src/Filament/Widgets'), for: 'Bishopm\Lightworx\Filament\Widgets')
             ->widgets([
+                Invoices::class
             ])
             ->middleware([
                 EncryptCookies::class,
