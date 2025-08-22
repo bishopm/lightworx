@@ -15,7 +15,7 @@ class ClientAccounts extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn (): Builder => Client::query())
+            ->query(Client::where('account','<>',0))
             ->columns([
                 TextColumn::make('client'),
                 TextColumn::make('account')
