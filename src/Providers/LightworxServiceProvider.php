@@ -2,6 +2,7 @@
 
 use Bishopm\Lightworx\Http\Middleware\AdminRoute;
 use Bishopm\Lightworx\Livewire\Search;
+use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;

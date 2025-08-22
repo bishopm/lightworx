@@ -1,6 +1,6 @@
 <?php
 
-namespace Bishopm\Lightworx\Filament\Resources\Clients\Tables;
+namespace Bishopm\Lightworx\Filament\Resources\Payments\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,17 +8,20 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ClientsTable
+class PaymentsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('client')
+                TextColumn::make('paymentdate')->label('Date')
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('client.client')
                     ->searchable(),
-                TextColumn::make('contact'),
-                TextColumn::make('account')
-                    ->searchable(),
+                TextColumn::make('amount')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //

@@ -25,13 +25,8 @@ class InvoiceForm
                     }),
                 TextEntry::make('invoicedate')
                     ->hiddenOn('create')
-                    ->label(function ($state){
-                        if (!$state){
-                            return "Invoice not sent yet";
-                        } else {
-                            return "Invoice sent on " . $state;
-                        }
-                    }),
+                    ->label('Date invoice sent')
+                    ->placeholder('Not sent yet'),
                 TextInput::make('total')
                     ->hiddenOn('create')
                     ->readonly(),

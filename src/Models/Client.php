@@ -16,4 +16,8 @@ class Client extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function getContactAttribute(){
+        return $this->contact_firstname . " " . $this->contact_surname;
+    }
+
 }

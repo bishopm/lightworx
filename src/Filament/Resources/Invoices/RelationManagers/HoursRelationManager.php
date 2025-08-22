@@ -3,7 +3,6 @@
 namespace Bishopm\Lightworx\Filament\Resources\Invoices\RelationManagers;
 
 use Bishopm\Lightworx\Models\Invoice;
-use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -55,9 +54,6 @@ class HoursRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Action::make('Invoice')->url(function (RelationManager $livewire){
-                    return route('invoice', ['id' => $livewire->getOwnerRecord()]);
-                }),
                 CreateAction::make()
                 ->after(function (Model $record) {
                     $parent=Invoice::with('hours','disbursements')->where('id',$record->invoice_id)->first();

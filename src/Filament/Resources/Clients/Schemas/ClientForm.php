@@ -13,13 +13,13 @@ class ClientForm
             ->components([
                 TextInput::make('client')
                     ->required(),
-                TextInput::make('contact_firstname')
-                    ->required(),
-                TextInput::make('contact_surname')
-                    ->required(),
                 TextInput::make('contact_email')
                     ->email()
                     ->required(),
+                TextInput::make('contact_firstname')
+                    ->required(),
+                TextInput::make('contact_surname')
+                    ->required()
             ]);
     }
 }
