@@ -15,7 +15,7 @@ class ClientAccounts extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(Client::where('account','<',0))
+            ->query(Client::where('account','>',0))
             ->emptyStateHeading('No amounts outstanding')
             ->emptyStateIcon('heroicon-o-banknotes')
             ->columns([
