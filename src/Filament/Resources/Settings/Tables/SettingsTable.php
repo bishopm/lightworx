@@ -15,19 +15,12 @@ class SettingsTable
         return $table
             ->columns([
                 TextColumn::make('setting')
-                    ->searchable(),
-                TextColumn::make('category')
+                    ->formatStateUsing(function ($state){
+                        return ucwords(str_replace("_"," ",$state));
+                    })
                     ->searchable(),
                 TextColumn::make('value')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->searchable()
             ])
             ->filters([
                 //
