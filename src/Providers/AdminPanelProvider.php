@@ -3,7 +3,6 @@
 namespace Bishopm\Lightworx\Providers;
 
 use Bishopm\Lightworx\Filament\Widgets\ClientAccounts;
-use Bishopm\Lightworx\Filament\Widgets\Invoices;
 use Bishopm\Lightworx\Filament\Widgets\UnsentInvoices;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
