@@ -2,7 +2,7 @@
 
 namespace Bishopm\Lightworx\Filament\Resources\Invoices\Schemas;
 
-use Bishopm\Lightworx\Models\Client;
+use Bishopm\Lightworx\Models\Project;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
@@ -14,9 +14,9 @@ class InvoiceForm
     {
         return $schema
             ->components([
-                Select::make('client_id')
-                    ->relationship('client', 'id')
-                    ->options(Client::query()->pluck('client', 'id'))
+                Select::make('project_id')
+                    ->relationship('project', 'id')
+                    ->options(Project::query()->pluck('project', 'id'))
                     ->required(),
                 TextInput::make('rate')->label('Hourly rate')
                     ->numeric()

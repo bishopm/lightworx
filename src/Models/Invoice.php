@@ -12,9 +12,9 @@ class Invoice extends Model
     public $table = 'invoices';
     protected $guarded = ['id'];
 
-    public function client(): BelongsTo
+    public function project(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function hours(): HasMany

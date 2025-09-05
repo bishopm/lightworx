@@ -12,7 +12,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->date('invoicedate')->nullable();
-            $table->integer('client_id');
+            $table->integer('project_id');
             $table->decimal('rate', 8,2);
             $table->decimal('total', 8,2)->nullable();
             $table->timestamp('created_at')->nullable();

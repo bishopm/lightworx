@@ -28,7 +28,7 @@ class ReportsController extends Controller
     }
 
     public function invoice ($id){
-        $inv=Invoice::with('hours','disbursements','client')->where('id',$id)->first();
+        $inv=Invoice::with('hours','disbursements','project.client')->where('id',$id)->first();
         $this->pdf->AddPage('P');
         $this->title="Light worx Invoice " . $inv->id . " - " . date("j M Y");
         $this->pdf->SetTitle($this->title);
@@ -45,10 +45,10 @@ class ReportsController extends Controller
         $this->pdf->SetTextColor(0,0,0);
         $filename=$this->title;
         $this->pdf->SetFont('DejaVu', 'B', 10);
-        $this->pdf->text(15,70,$inv->client->client);
+        $this->pdf->text(15,70,$inv->project->client->client);
         $this->pdf->SetFont('DejaVu', '', 10);
-        $this->pdf->text(15,75,"Attention: " . $inv->client->contact_firstname . " " . $inv->client->contact_surname);
-        $this->pdf->text(15,80,$inv->client->contact_email);
+        $this->pdf->text(15,75,"Attention: " . $inv->project->client->contact_firstname . " " . $inv->project->client->contact_surname);
+        $this->pdf->text(15,80,$inv->project->client->contact_email);
         $this->pdf->text(145,70,"Invoice No:");
         $this->pdf->setxy(150,68.8);
         $this->pdf->cell(52,0,$inv->id,0,0,'R');
@@ -111,12 +111,14 @@ class ReportsController extends Controller
         $this->pdf->RoundedRect(15,90,186,15,1,'1234','F');
         $this->pdf->SetTextColor(255,255,255);
         $this->pdf->SetFont('DejaVu', '', 9);
-        $this->pdf->text(17,95,"Invoice number");
-        $this->pdf->text(92,95,"Date");
+        $this->pdf->text(17,95,"Invoice");
+        $this->pdf->text(37,95,"Project");
+        $this->pdf->text(112,95,"Date");
         $this->pdf->text(167,95,"Total");
         $this->pdf->SetFont('DejaVu', 'B', 11);
         $this->pdf->text(17,101,$inv->id);
-        $this->pdf->text(92,101,date('d M Y'));
+        $this->pdf->text(37,101,$inv->project->project);
+        $this->pdf->text(112,101,date('d M Y'));
         $this->pdf->text(167,101,"R " . number_format($total,2));
 
         $this->pdf->Output('I',$filename);

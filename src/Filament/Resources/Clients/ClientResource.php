@@ -35,7 +35,7 @@ class ClientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            'Bishopm\Lightworx\Filament\Resources\Clients\RelationManagers\ProjectsRelationManager'
         ];
     }
 
