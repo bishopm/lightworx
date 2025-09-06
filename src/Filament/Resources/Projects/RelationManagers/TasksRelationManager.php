@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
@@ -22,7 +23,14 @@ class TasksRelationManager extends RelationManager
             ->components([
                 TextInput::make('task')
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->selectablePlaceholder(false)
+                    ->options([
+                        'todo' => 'To do',
+                        'underway' => 'Underway',
+                        'done' => 'Done',
+                    ])
+                    ->default('todo')
                     ->required(),
                 DateTimePicker::make('completed_at'),
             ]);

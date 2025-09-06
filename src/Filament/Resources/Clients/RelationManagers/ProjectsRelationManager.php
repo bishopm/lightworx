@@ -2,16 +2,10 @@
 
 namespace Bishopm\Lightworx\Filament\Resources\Clients\RelationManagers;
 
-use Filament\Actions\AssociateAction;
+use Bishopm\Lightworx\Filament\Resources\Projects\ProjectResource;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DetachAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -23,6 +17,8 @@ use Filament\Tables\Table;
 class ProjectsRelationManager extends RelationManager
 {
     protected static string $relationship = 'projects';
+
+    protected static ?string $relatedResource = ProjectResource::class;
 
     public function form(Schema $schema): Schema
     {
@@ -60,8 +56,6 @@ class ProjectsRelationManager extends RelationManager
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DissociateBulkAction::make(),
-                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

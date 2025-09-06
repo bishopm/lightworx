@@ -20,7 +20,14 @@ class TaskForm
                     ->relationship('project', 'id')
                     ->options(Project::query()->pluck('project', 'id'))
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->selectablePlaceholder(false)
+                    ->options([
+                        'todo' => 'To do',
+                        'underway' => 'Underway',
+                        'done' => 'Done',
+                    ])
+                    ->default('todo')
                     ->required(),
                 DateTimePicker::make('completed_at'),
             ]);

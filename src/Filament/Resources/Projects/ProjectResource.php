@@ -8,6 +8,7 @@ use Bishopm\Lightworx\Filament\Resources\Projects\Pages\ListProjects;
 use Bishopm\Lightworx\Filament\Resources\Projects\Schemas\ProjectForm;
 use Bishopm\Lightworx\Filament\Resources\Projects\Tables\ProjectsTable;
 use BackedEnum;
+use Bishopm\Lightworx\Filament\Resources\Clients\ClientResource;
 use Bishopm\Lightworx\Models\Project;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -21,6 +22,8 @@ class ProjectResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     protected static ?string $recordTitleAttribute = 'project';
+
+    protected static ?string $parentResource = ClientResource::class;
 
     public static function form(Schema $schema): Schema
     {
