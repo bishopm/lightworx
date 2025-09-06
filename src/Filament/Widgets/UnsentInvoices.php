@@ -19,7 +19,7 @@ class UnsentInvoices extends TableWidget
             ->emptyStateHeading('No unsent invoices')
             ->emptyStateIcon('heroicon-o-inbox')
             ->columns([
-                TextColumn::make('client.client'),
+                TextColumn::make('project.client.client'),
                 TextColumn::make('total')
                     ->numeric()
                     ->prefix('R ')
