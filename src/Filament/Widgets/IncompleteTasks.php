@@ -19,7 +19,7 @@ class IncompleteTasks extends TableWidget
             ->emptyStateHeading('No incomplete tasks')
             ->emptyStateIcon('heroicon-o-check-circle')
             ->columns([
-                TextColumn::make('task'),
+                TextColumn::make('task')->searchable(),
                 TextColumn::make('project.project')
                     ->numeric()
                     ->sortable(),
@@ -28,7 +28,7 @@ class IncompleteTasks extends TableWidget
                 //
             ])
             ->headerActions([
-                //
+                
             ])
             ->recordActions([
                 Action::make('edit')
@@ -40,9 +40,16 @@ class IncompleteTasks extends TableWidget
                     ->openUrlInNewTab(false), 
                 ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    //
-                ]),
+                Action::make('Add task')
+                    ->label('Add task')
+                    ->icon('heroicon-o-plus')
+                    ->url(route('filament.admin.resources.tasks.create'))
+                    ->openUrlInNewTab(false),
             ]);
+    }
+
+    public function getTableHeading(): string
+    {
+        return 'Tasks';
     }
 }

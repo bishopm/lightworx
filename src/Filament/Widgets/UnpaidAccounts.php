@@ -10,7 +10,7 @@ use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
 
-class ClientAccounts extends TableWidget
+class UnpaidAccounts extends TableWidget
 {
     public function table(Table $table): Table
     {
@@ -50,5 +50,10 @@ class ClientAccounts extends TableWidget
                     //
                 ]),
             ]);
+    }
+
+    public function getTableHeading(): string
+    {
+        return 'Client accounts';
     }
 }

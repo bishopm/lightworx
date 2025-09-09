@@ -13,6 +13,7 @@
     "keywords": ["Laravel", "Filament"],
     "require": {
         "illuminate/support": "~12",
+        "alareqi/filament-pwa": "~1",
         "filament/filament": "~4"
     },
     "require-dev": {

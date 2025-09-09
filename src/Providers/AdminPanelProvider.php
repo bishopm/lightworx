@@ -3,6 +3,7 @@
 namespace Bishopm\Lightworx\Providers;
 
 use Bishopm\Lightworx\Filament\Widgets\ClientAccounts;
+use Bishopm\Lightworx\Filament\Widgets\IncompleteTasks;
 use Bishopm\Lightworx\Filament\Widgets\UnsentInvoices;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
@@ -40,8 +41,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: base_path('vendor/bishopm/lightworx/src/Filament/Widgets'), for: 'Bishopm\Lightworx\Filament\Widgets')
             ->widgets([
-                UnsentInvoices::class,
-                ClientAccounts::class
             ])
             ->middleware([
                 EncryptCookies::class,
