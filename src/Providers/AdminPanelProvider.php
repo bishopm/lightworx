@@ -2,10 +2,8 @@
 
 namespace Bishopm\Lightworx\Providers;
 
-use Bishopm\Lightworx\Filament\Widgets\ClientAccounts;
-use Bishopm\Lightworx\Filament\Widgets\IncompleteTasks;
-use Bishopm\Lightworx\Filament\Widgets\UnsentInvoices;
 use Filament\Actions\Action;
+use Alareqi\FilamentPwa\FilamentPwaPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -41,6 +39,21 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: base_path('vendor/bishopm/lightworx/src/Filament/Widgets'), for: 'Bishopm\Lightworx\Filament\Widgets')
             ->widgets([
+            ])
+            ->plugins([
+                FilamentPwaPlugin::make()
+                ->name('Lightworx')
+                ->shortName('Lightworx')
+                ->description('Lightworx PWA')
+                ->themeColor('#3B82F6')
+                ->backgroundColor('#ffffff')
+                ->standalone()
+                ->language('en')
+                ->ltr()
+                ->enableInstallation(2000) // Show prompt after 2 seconds
+                ->addShortcut('Dashboard', '/admin', 'Main dashboard')
+                ->icons('images/icons', [72, 96, 128, 144, 152, 192, 384, 512])
+                ->serviceWorker('my-app-v1.0.0', '/offline'),
             ])
             ->middleware([
                 EncryptCookies::class,
