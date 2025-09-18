@@ -50,9 +50,9 @@ class AdminPanelProvider extends PanelProvider
                 ->standalone()
                 ->language('en')
                 ->ltr()
-                ->enableInstallation(2000) // Show prompt after 2 seconds
+                ->enableInstallation(1000) // Show prompt after 2 seconds
                 ->addShortcut('Dashboard', '/admin', 'Main dashboard')
-                ->icons('images/icons', [72, 96, 128, 144, 152, 192, 384, 512])
+                ->icons('lightworx/images/icons', [72, 96, 128, 144, 152, 192, 384, 512])
                 ->serviceWorker('my-app-v1.0.0', '/offline'),
             ])
             ->middleware([
