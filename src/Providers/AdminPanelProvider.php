@@ -49,6 +49,7 @@ class AdminPanelProvider extends PanelProvider
                 ->backgroundColor('#ffffff')
                 ->standalone()
                 ->language('en')
+                ->installation(false)
                 ->ltr()
                 ->enableInstallation(1000) // Show prompt after 2 seconds
                 ->addShortcut('Dashboard', '/admin', 'Main dashboard')
