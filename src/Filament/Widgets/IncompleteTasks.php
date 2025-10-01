@@ -2,10 +2,12 @@
 
 namespace Bishopm\Lightworx\Filament\Widgets;
 
+use Bishopm\Lightworx\Models\Project;
 use Bishopm\Lightworx\Models\Task;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,7 +27,8 @@ class IncompleteTasks extends TableWidget
                     ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('project_id')
+                    ->options(fn () => Project::all()->pluck('project', 'id'))
             ])
             ->headerActions([
                 
