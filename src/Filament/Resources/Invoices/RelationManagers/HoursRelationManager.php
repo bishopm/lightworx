@@ -20,6 +20,10 @@ class HoursRelationManager extends RelationManager
 {
     protected static string $relationship = 'hours';
 
+    protected static ?string $title = 'Charges';
+
+    protected static ?string $modelLabel = 'Charge';
+
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -55,6 +59,7 @@ class HoursRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make()
+                ->label('New charge')
                 ->after(function (Model $record) {
                     $parent=Invoice::with('hours','disbursements')->where('id',$record->invoice_id)->first();
                     $total=0;
