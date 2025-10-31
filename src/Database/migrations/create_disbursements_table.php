@@ -12,7 +12,8 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->date('disbursementdate');
-            $table->integer('invoice_id');
+            $table->integer('disbursable_id');
+            $table->string('disbursable_type');
             $table->string('details');
             $table->decimal('disbursement', 5,2)->nullable();
         });

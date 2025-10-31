@@ -3,7 +3,7 @@
 namespace Bishopm\Lightworx\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Hour extends Model
 {
@@ -11,10 +11,11 @@ class Hour extends Model
     public $table = 'hours';
     protected $guarded = ['id'];
     public $timestamps = false;
-
-    public function invoice(): BelongsTo
+    
+    public function hourable(): MorphTo
     {
-        return $this->belongsTo(Invoice::class);
+        return $this->morphTo();
     }
+
 
 }

@@ -5,6 +5,7 @@ namespace Bishopm\Lightworx\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Invoice extends Model
 {
@@ -17,13 +18,13 @@ class Invoice extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function hours(): HasMany
+    public function hours(): MorphMany
     {
-        return $this->hasMany(Hour::class);
+        return $this->morphMany(Hour::class, 'hourable');
     }
 
     public function disbursements(): HasMany
     {
-        return $this->hasMany(Disbursement::class);
+        return $this->hasMany(Disbursement::class, 'disbursable');
     }
 }

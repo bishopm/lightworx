@@ -3,7 +3,7 @@
 namespace Bishopm\Lightworx\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Disbursement extends Model
 {
@@ -12,9 +12,9 @@ class Disbursement extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
 
-    public function invoice(): BelongsTo
+    public function disbursable(): MorphTo
     {
-        return $this->belongsTo(Invoice::class);
+        return $this->morphTo();
     }
 
 }
