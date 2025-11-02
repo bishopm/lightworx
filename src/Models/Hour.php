@@ -16,6 +16,4 @@ class Hour extends Model
     {
         return $this->morphTo();
     }
-
-
 }

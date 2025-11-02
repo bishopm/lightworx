@@ -3,6 +3,7 @@
 use Bishopm\Lightworx\Http\Middleware\AdminRoute;
 use Bishopm\Lightworx\Livewire\Search;
 use Filament\Facades\Filament;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
@@ -32,6 +33,10 @@ class LightworxServiceProvider extends ServiceProvider
         Livewire::component('search', Search::class);
         Blade::componentNamespace('Bishopm\\Lightworx\\Resources\\Views\\Components', 'lightworx');
         Config::set('auth.providers.users.model','Bishopm\Lightworx\Models\User');
+        Relation::morphMap([
+            'invoice' => 'Bishopm\Lightworx\Models\Invoice',
+            'quote' => 'Bishopm\Lightworx\Models\Quote'
+        ]);
     }
 
     /**

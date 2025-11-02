@@ -22,8 +22,8 @@ class Quote extends Model
         return $this->morphMany(Hour::class, 'hourable');
     }
 
-    public function disbursements(): HasMany
+    public function disbursements(): MorphMany
     {
-        return $this->hasMany(Disbursement::class, 'disbursable');
+        return $this->morphMany(Disbursement::class, 'disbursable');
     }
 }

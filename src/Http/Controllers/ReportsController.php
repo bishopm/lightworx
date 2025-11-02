@@ -6,6 +6,7 @@ use Bishopm\Lightworx\Models\Client;
 use Bishopm\Lightworx\Models\Invoice;
 use Illuminate\Support\Str;
 use Bishopm\Lightworx\Classes\tFPDF;
+use Bishopm\Lightworx\Models\Quote;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use stdClass;
@@ -27,15 +28,23 @@ class ReportsController extends Controller
         $this->logo=url('/') . "/lightworx/images/lightworx.png";
     }
 
-    public function invoice ($id){
-        $inv=Invoice::with('hours','disbursements','project.client')->where('id',$id)->first();
+    public function quote($id){
+        $this->invoice($id,"Quotation");
+    }
+
+    public function invoice ($id,$type="Invoice"){
+        if ($type=="Invoice"){
+            $inv=Invoice::with('hours','disbursements','project.client')->where('id',$id)->first();
+        } else {
+            $inv=Quote::with('hours','disbursements','project.client')->where('id',$id)->first();
+        }
         $this->pdf->AddPage('P');
-        $this->title="Light worx Invoice " . $inv->id . " - " . date("j M Y");
+        $this->title="Light worx " . $type . " " . $inv->id . " - " . date("j M Y");
         $this->pdf->SetTitle($this->title);
         $this->pdf->SetAutoPageBreak(true, 0);
         $this->pdf->SetFont('DejaVu', 'B', 12);
         $this->pdf->Image($this->logo,168,8,45);
-        $this->pdf->text(15, 10, "Invoice");
+        $this->pdf->text(15, 10, $type);
         $this->pdf->SetTextColor(100,100,100);
         $this->pdf->text(15, 25, "Lightworx");
         $this->pdf->SetFont('DejaVu', '', 10);
@@ -49,7 +58,7 @@ class ReportsController extends Controller
         $this->pdf->SetFont('DejaVu', '', 10);
         $this->pdf->text(15,75,"Attention: " . $inv->project->client->contact_firstname . " " . $inv->project->client->contact_surname);
         $this->pdf->text(15,80,$inv->project->client->contact_email);
-        $this->pdf->text(145,70,"Invoice No:");
+        $this->pdf->text(145,70,$type . " No:");
         $this->pdf->setxy(150,68.8);
         $this->pdf->cell(52,0,$inv->id,0,0,'R');
         $this->pdf->text(145,75,"Date:");
@@ -57,7 +66,11 @@ class ReportsController extends Controller
         $this->pdf->cell(52,0,date('d M Y'),0,0,'R');
         $this->pdf->text(145,80,"Reference:");
         $this->pdf->setxy(150,78.8);
-        $this->pdf->cell(52,0,"Inv " . $inv->id,0,0,'R');
+        if ($type=="Invoice"){
+            $this->pdf->cell(52,0,"Inv " . $inv->id,0,0,'R');
+        } else {
+            $this->pdf->cell(52,0,"Quote " . $inv->id,0,0,'R');
+        }
         $yy=117;
         $total=0;
         if (count($inv->hours)){
@@ -111,7 +124,7 @@ class ReportsController extends Controller
         $this->pdf->RoundedRect(15,90,186,15,1,'1234','F');
         $this->pdf->SetTextColor(255,255,255);
         $this->pdf->SetFont('DejaVu', '', 9);
-        $this->pdf->text(17,95,"Invoice");
+        $this->pdf->text(17,95,$type);
         $this->pdf->text(37,95,"Project");
         $this->pdf->text(112,95,"Date");
         $this->pdf->text(167,95,"Total");
