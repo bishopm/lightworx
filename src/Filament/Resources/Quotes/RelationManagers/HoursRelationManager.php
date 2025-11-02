@@ -25,7 +25,6 @@ class HoursRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                DatePicker::make('hourdate'),
                 TextInput::make('invoice_id')
                     ->required()
                     ->numeric(),
@@ -39,11 +38,7 @@ class HoursRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('hourdate')
             ->columns([
-                TextColumn::make('hourdate')
-                    ->date()
-                    ->sortable(),
                 TextColumn::make('invoice_id')
                     ->numeric()
                     ->sortable(),
