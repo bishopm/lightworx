@@ -55,8 +55,8 @@ protected $listeners = ['refresh-total' => 'refreshTotal'];
         $record = $this->getRecord();
 
         return [
-            route('filament.admin.resources.invoices.index') => 'Quotes',
-            route('filament.admin.resources.invoices.edit', $record) => 'Quote ' . $record->id,
+            route('filament.admin.resources.quotes.index') => 'Quotes',
+            route('filament.admin.resources.quotes.edit', $record) => 'Quote ' . $record->id,
             null => 'Edit',
         ];
     }
