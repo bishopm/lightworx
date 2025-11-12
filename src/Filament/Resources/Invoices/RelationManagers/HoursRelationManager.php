@@ -61,7 +61,7 @@ class HoursRelationManager extends RelationManager
                 CreateAction::make()
                 ->label('New charge')
                 ->after(function (Model $record) {
-                    $parent=Invoice::with('hours','disbursements')->where('id',$record->invoice_id)->first();
+                    $parent=Invoice::with('hours','disbursements')->where('id',$record->hourable_id)->first();
                     $total=0;
                     foreach ($parent->hours as $hour){
                         $total=$total+($hour->hours*$parent->rate);
@@ -77,7 +77,7 @@ class HoursRelationManager extends RelationManager
             ->recordActions([
                 EditAction::make()
                 ->after(function (Model $record) {
-                    $parent=Invoice::with('hours','disbursements')->where('id',$record->invoice_id)->first();
+                    $parent=Invoice::with('hours','disbursements')->where('id',$record->hourable_id)->first();
                     $total=0;
                     foreach ($parent->hours as $hour){
                         $total=$total+($hour->hours*$parent->rate);
@@ -91,7 +91,7 @@ class HoursRelationManager extends RelationManager
                 }),
                 DeleteAction::make()
                 ->after(function (Model $record) {
-                    $parent=Invoice::with('hours','disbursements')->where('id',$record->invoice_id)->first();
+                    $parent=Invoice::with('hours','disbursements')->where('id',$record->hourable_id)->first();
                     $total=0;
                     foreach ($parent->hours as $hour){
                         $total=$total+($hour->hours*$parent->rate);
