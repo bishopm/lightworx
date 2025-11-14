@@ -14,7 +14,7 @@ Route::middleware(['web'])->controller('\Bishopm\Lightworx\Http\Controllers\Home
 
 // Reports
 Route::middleware(['web'])->controller('\Bishopm\Lightworx\Http\Controllers\ReportsController')->group(function () {
-    Route::get('/admin/reports/invoices/{id}', 'invoice')->name('invoice');
+    Route::get('/admin/reports/invoices/{id}/{email?}', 'invoice')->name('invoice');
     Route::get('/admin/reports/quotes/{id}', 'quote')->name('quote');
 });
 

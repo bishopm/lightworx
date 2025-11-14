@@ -37,6 +37,16 @@ class LightworxServiceProvider extends ServiceProvider
             'invoice' => 'Bishopm\Lightworx\Models\Invoice',
             'quote' => 'Bishopm\Lightworx\Models\Quote'
         ]);
+        Config::set('mail.default',setting('mailer'));
+        Config::set('mail.mailers.' . setting('mailer') . '.host',setting('mail_host'));
+        Config::set('mail.mailers.' . setting('mailer') . '.port',setting('mail_port'));
+        Config::set('mail.mailers.' . setting('mailer') . '.username',setting('mail_username'));
+        Config::set('mail.mailers.' . setting('mailer') . '.password',setting('mail_password'));
+        Config::set('mail.mailers.' . setting('mailer') . '.encryption',setting('mail_encryption'));
+        Config::set('mail.from.address',setting('mail_from_address'));
+        Config::set('mail.from.name',setting('mail_from_name'));    
+        Config::set('mail.reply_to.address',setting('mail_from_address'));
+        Config::set('mail.reply_to.name',setting('mail_from_name'));
     }
 
     /**

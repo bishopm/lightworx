@@ -32,7 +32,7 @@ class ReportsController extends Controller
         $this->invoice($id,"Quotation");
     }
 
-    public function invoice ($id,$type="Invoice"){
+    public function invoice ($id,$type="Invoice",$email=false){
         if ($type=="Invoice"){
             $inv=Invoice::with('hours','disbursements','project.client')->where('id',$id)->first();
         } else {
@@ -133,8 +133,11 @@ class ReportsController extends Controller
         $this->pdf->text(37,101,$inv->project->project);
         $this->pdf->text(112,101,date('d M Y'));
         $this->pdf->text(167,101,"R " . number_format($total,2));
-
-        $this->pdf->Output('I',$filename);
-        exit;
+        if ($email){
+            return $this->pdf->Output('S',$filename);
+        } else {    
+            $this->pdf->Output('I',$filename);
+            exit;
+        }
     }
 }
